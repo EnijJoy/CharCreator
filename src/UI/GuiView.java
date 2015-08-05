@@ -1,6 +1,8 @@
 package UI;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -24,6 +26,7 @@ public class GuiView extends Application {
 
         button = new Button();
         button.setText("Generate Symbol");
+        button.setOnAction(e -> System.out.println("I learn Java & JavaFX now!"));
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
@@ -33,5 +36,6 @@ public class GuiView extends Application {
         primaryStage.show();
 
     }
+
 
 }
