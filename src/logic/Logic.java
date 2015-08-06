@@ -29,9 +29,17 @@ public class Logic implements InputNumberOfChar, OutputNumberOfChar {
 
     public static void main(String[] args) {
 
+        boolean EXIT = true;
+
         Logic logic = new Logic();
-        logic.convetNumberInChar();
-        logic.printResult();
+
+        while (EXIT){
+
+            logic.convetNumberInChar();
+            logic.printResult();
+
+        }
+
 
 
     }
