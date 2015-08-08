@@ -1,20 +1,18 @@
 package UI;
 
-import javafx.application.Application;                              //создать вкладки (file, help, options).
-import javafx.geometry.Insets;                                      //реализовать неизменняемый размер окна
-import javafx.scene.Scene;                                          //кидать exception в отдельные окна!
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import logic.ConvertNumberInChar;
+
 
 
 public class GuiView extends Application {
 
+    private String NAME_PROGRAM = "CharCreator v1.0";
     Stage window;
-
+    BorderPane layout;
 
     public static void main(String[] args) {
         launch(args);
@@ -24,66 +22,68 @@ public class GuiView extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         window = primaryStage;
-        window.setTitle("CharCreator v1.0");
+        window.setTitle(NAME_PROGRAM);
 
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(5);
-        grid.setHgap(20);
 
-        Label intLabel = new Label("Номер:");
-        GridPane.setConstraints(intLabel, 0, 0);
+        //File menu
+        Menu fileMenu = new Menu("_File");
 
-        TextField intInput = new TextField();
-        GridPane.setConstraints(intInput, 1, 0);
-
-        Label charLabel = new Label("Символ UTF-8:");
-        GridPane.setConstraints(charLabel, 0, 1);
-
-        TextField charOut = new TextField();
-        GridPane.setConstraints(charOut, 1, 1);
-
-        Button generateButton = new Button("Generate Symbol");
-        GridPane.setConstraints(generateButton, 1, 2);
-
-        generateButton.setOnAction(e -> {
-            isInt(intInput, intInput.getText());
-            charPrint(charOut, charOut.getText());
-
+        //File menu items
+        MenuItem saveFile = new MenuItem("_Save...");   //прикрутить логику сохранения. Если поля ввода информации не заполнены, функция save неюзабельна
+        saveFile.setOnAction(e -> {                     // saveFile.setDisable(true);
+            System.out.println("File saved in .txt");
         });
-        grid.getChildren().addAll(intLabel, intInput, charLabel, charOut, generateButton);
+        fileMenu.getItems().add(saveFile);
 
-        Scene scene = new Scene(grid, 300, 200);
+        MenuItem openFile = new MenuItem("_Open...");   //прикрутить логику открытия txt
+        openFile.setOnAction(e -> {
+            System.out.println("Open file from .txt");
+        });
+        fileMenu.getItems().add(openFile);
+
+        fileMenu.getItems().add(new SeparatorMenuItem());
+        fileMenu.getItems().add(new MenuItem("Settings..."));
+        fileMenu.getItems().add(new SeparatorMenuItem());
+
+        MenuItem exitFile = new MenuItem("Exit");
+        exitFile.setOnAction(e -> {
+            window.close();
+        });
+        fileMenu.getItems().add(exitFile);
+
+
+        //Mode menu
+        Menu modeMenu = new Menu("_Mode");
+
+        //Mode menu items
+        modeMenu.getItems().add(new MenuItem("_CharCreator"));
+        modeMenu.getItems().add(new SeparatorMenuItem());
+        modeMenu.getItems().add(new MenuItem("_Encryption"));
+        modeMenu.getItems().add(new SeparatorMenuItem());
+        modeMenu.getItems().add(new MenuItem("_Decipher"));
+
+        //Help menu
+        Menu helpMenu = new Menu("Help");
+
+        //Help menu items
+        helpMenu.getItems().add(new MenuItem("About..."));
+        helpMenu.getItems().add(new MenuItem("Developing..."));
+
+        //Add MenuBar with Menu's
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(fileMenu, modeMenu, helpMenu);
+
+
+        layout = new BorderPane();
+        layout.setTop(menuBar);
+
+        Scene scene = new Scene(layout, 300, 200);
+
         window.setScene(scene);
-
         window.show();
     }
 
 
-    private boolean isInt(TextField input, String message) {
-        try {
-
-            int number = Integer.parseInt(input.getText());
-            ConvertNumberInChar.NUMBER_OF_CHAR = number;
-            ConvertNumberInChar.ConvertNumberInChar();
-            return true;
-
-        } catch (NumberFormatException e) {
-            System.out.println("Error: " + message + " is not a number");
-            return false;
-        }
-    }
-
-    private boolean charPrint(TextField out, String message) {
-        try {
-            StringBuilder s = new StringBuilder().append(ConvertNumberInChar.symbolUTF_8);
-            out.setText(String.valueOf(s));
-            return true;
-        } catch (NumberFormatException e) {                                  // Доработать exception (создать свой)
-            System.out.println("Error: Input a number in first TextField");  // Если ввод во второе поле, кинуть exception
-            return false;
-        }
-    }
 }
 
 
