@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 
 
-public class GuiView extends Application {      // ГЛАЗА РЕЖЕТ ОТ ОБИЛИЯ ОДИНАКОВОГО КОДА!!! УРОСТИТЬ!
+public class UICharCreator extends Application {      // ГЛАЗА РЕЖЕТ ОТ ОБИЛИЯ ОДИНАКОВОГО КОДА!!! УРОСТИТЬ!
 
     private String NAME_PROGRAM = "CharCreator v1.0";
     Stage window;
@@ -33,56 +33,53 @@ public class GuiView extends Application {      // ГЛАЗА РЕЖЕТ ОТ О
         saveFile.setOnAction(e -> {                     // saveFile.setDisable(true);
             System.out.println("File saved in .txt");
         });
-        fileMenu.getItems().add(saveFile);
 
         MenuItem openFile = new MenuItem("_Open...");   //прикрутить логику открытия txt
         openFile.setOnAction(e -> {
             System.out.println("Open file from .txt");
         });
-        fileMenu.getItems().add(openFile);
-
-        fileMenu.getItems().add(new SeparatorMenuItem());
 
         MenuItem settingsFile = new MenuItem("Settings...");
         settingsFile.setOnAction(e -> {
             System.out.println("Oooooops");///открываем настройки и чо-то делаем
         });
-        fileMenu.getItems().add(settingsFile);
-
-        fileMenu.getItems().add(new SeparatorMenuItem());
 
         MenuItem exitFile = new MenuItem("Exit");
         exitFile.setOnAction(e -> {
             window.close();
         });
-        fileMenu.getItems().add(exitFile);
+
+        fileMenu.getItems().addAll(saveFile, openFile, new SeparatorMenuItem(), settingsFile, new SeparatorMenuItem(), exitFile);
 
 
         //Mode menu
         Menu modeMenu = new Menu("_Mode");
+        ToggleGroup modeToggle = new ToggleGroup();
 
         //Mode menu items
-        MenuItem charMode = new MenuItem("_CharCreator");
+        RadioMenuItem charMode = new RadioMenuItem("_CharCreator");
+        charMode.setToggleGroup(modeToggle);
+        charMode.setSelected(true);
         charMode.setOnAction(e -> {
-            System.out.println("CharCreator()");//вызов CharCreator() (конвертим int в char)
+            if (charMode.isSelected())
+                System.out.println("CharCreator()");//вызов CharCreator() (конвертим int в char)
         });
-        modeMenu.getItems().add(charMode);
 
-        modeMenu.getItems().add(new SeparatorMenuItem());
-
-        MenuItem cryptMode = new MenuItem("_Encryption");
+        RadioMenuItem cryptMode = new RadioMenuItem("_Encryption");
+        cryptMode.setToggleGroup(modeToggle);
         cryptMode.setOnAction(e -> {
-            System.out.println("Encryption()");//вызов Encryption() (придумать алгоритм шифрования с символами)
+            if (cryptMode.isSelected())
+                System.out.println("Encryption()");//вызов Encryption() (придумать алгоритм шифрования с символами)
         });
-        modeMenu.getItems().add(cryptMode);
 
-        modeMenu.getItems().add(new SeparatorMenuItem());
-
-        MenuItem decipherMode = new MenuItem("_Decipher");
+        RadioMenuItem decipherMode = new RadioMenuItem("_Decipher");
+        decipherMode.setToggleGroup(modeToggle);
         decipherMode.setOnAction(e -> {
-            System.out.println("Decipher()");//вызов Decipher() (Алгоритм расшифровки)
+            if (decipherMode.isSelected())
+                System.out.println("Decipher()");//вызов Decipher() (Алгоритм расшифровки)
         });
-        modeMenu.getItems().add(decipherMode);
+
+        modeMenu.getItems().addAll(charMode, new SeparatorMenuItem(), cryptMode, new SeparatorMenuItem(), decipherMode);
 
 
         //Help menu
@@ -93,13 +90,13 @@ public class GuiView extends Application {      // ГЛАЗА РЕЖЕТ ОТ О
         aboutHelp.setOnAction(e -> {
             System.out.println("About program");//о программе
         });
-        helpMenu.getItems().add(aboutHelp);
 
         MenuItem developHelp = new MenuItem("Developing...");
         developHelp.setOnAction(e -> {
             System.out.println("Developing");//раздел "в разработке"
         });
-        helpMenu.getItems().add(developHelp);
+
+        helpMenu.getItems().addAll(aboutHelp, developHelp);
 
         //Add MenuBar with Menu's
         MenuBar menuBar = new MenuBar();

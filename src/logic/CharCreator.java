@@ -2,7 +2,7 @@ package logic;
 
 import javafx.scene.control.TextField;
 
-public class ConvertNumberInChar {
+public class CharCreator {
 
     public static char symbolUTF_8 = 0;     // сделать переменные приватными, реализовать безопасную логику
 
@@ -18,8 +18,8 @@ public class ConvertNumberInChar {
         try {
 
             int number = Integer.parseInt(input.getText());
-            ConvertNumberInChar.NUMBER_OF_CHAR = number;
-            ConvertNumberInChar.ConvertNumberInChar();
+            CharCreator.NUMBER_OF_CHAR = number;
+            CharCreator.ConvertNumberInChar();
             return true;
 
         } catch (NumberFormatException e) {
@@ -30,7 +30,7 @@ public class ConvertNumberInChar {
 
     private boolean charPrint(TextField out, String message) {
         try {
-            StringBuilder s = new StringBuilder().append(ConvertNumberInChar.symbolUTF_8);
+            StringBuilder s = new StringBuilder().append(CharCreator.symbolUTF_8);
             out.setText(String.valueOf(s));
             return true;
         } catch (NumberFormatException e) {                                  // Доработать exception (создать свой)
