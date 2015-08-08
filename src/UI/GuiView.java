@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 
 
-public class GuiView extends Application {
+public class GuiView extends Application {      // ГЛАЗА РЕЖЕТ ОТ ОБИЛИЯ ОДИНАКОВОГО КОДА!!! УРОСТИТЬ!
 
     private String NAME_PROGRAM = "CharCreator v1.0";
     Stage window;
