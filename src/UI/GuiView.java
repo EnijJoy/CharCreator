@@ -42,7 +42,13 @@ public class GuiView extends Application {
         fileMenu.getItems().add(openFile);
 
         fileMenu.getItems().add(new SeparatorMenuItem());
-        fileMenu.getItems().add(new MenuItem("Settings..."));
+
+        MenuItem settingsFile = new MenuItem("Settings...");
+        settingsFile.setOnAction(e -> {
+            System.out.println("Oooooops");///открываем настройки и чо-то делаем
+        });
+        fileMenu.getItems().add(settingsFile);
+
         fileMenu.getItems().add(new SeparatorMenuItem());
 
         MenuItem exitFile = new MenuItem("Exit");
@@ -56,18 +62,44 @@ public class GuiView extends Application {
         Menu modeMenu = new Menu("_Mode");
 
         //Mode menu items
-        modeMenu.getItems().add(new MenuItem("_CharCreator"));
+        MenuItem charMode = new MenuItem("_CharCreator");
+        charMode.setOnAction(e -> {
+            System.out.println("CharCreator()");//вызов CharCreator() (конвертим int в char)
+        });
+        modeMenu.getItems().add(charMode);
+
         modeMenu.getItems().add(new SeparatorMenuItem());
-        modeMenu.getItems().add(new MenuItem("_Encryption"));
+
+        MenuItem cryptMode = new MenuItem("_Encryption");
+        cryptMode.setOnAction(e -> {
+            System.out.println("Encryption()");//вызов Encryption() (придумать алгоритм шифрования с символами)
+        });
+        modeMenu.getItems().add(cryptMode);
+
         modeMenu.getItems().add(new SeparatorMenuItem());
-        modeMenu.getItems().add(new MenuItem("_Decipher"));
+
+        MenuItem decipherMode = new MenuItem("_Decipher");
+        decipherMode.setOnAction(e -> {
+            System.out.println("Decipher()");//вызов Decipher() (Алгоритм расшифровки)
+        });
+        modeMenu.getItems().add(decipherMode);
+
 
         //Help menu
         Menu helpMenu = new Menu("Help");
 
         //Help menu items
-        helpMenu.getItems().add(new MenuItem("About..."));
-        helpMenu.getItems().add(new MenuItem("Developing..."));
+        MenuItem aboutHelp = new MenuItem("About...");
+        aboutHelp.setOnAction(e -> {
+            System.out.println("About program");//о программе
+        });
+        helpMenu.getItems().add(aboutHelp);
+
+        MenuItem developHelp = new MenuItem("Developing...");
+        developHelp.setOnAction(e -> {
+            System.out.println("Developing");//раздел "в разработке"
+        });
+        helpMenu.getItems().add(developHelp);
 
         //Add MenuBar with Menu's
         MenuBar menuBar = new MenuBar();
