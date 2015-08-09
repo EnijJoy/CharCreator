@@ -1,7 +1,17 @@
 package UI;
 
-/**
- * Created by Пашок on 08.08.2015.
- */
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+
 public class UIEncryption {
+
+    private Scene cryptScene;
+
+
+
+
+
 }

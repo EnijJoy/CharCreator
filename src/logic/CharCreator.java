@@ -4,9 +4,9 @@ import javafx.scene.control.TextField;
 
 public class CharCreator {
 
-    public static char symbolUTF_8 = 0;     // сделать переменные приватными, реализовать безопасную логику
+    private static char symbolUTF_8 = 0;     // сделать переменные приватными, реализовать безопасную логику
 
-    public static int NUMBER_OF_CHAR = 0;
+    private static int NUMBER_OF_CHAR = 0;
 
     public static char ConvertNumberInChar() {
         char save = (char) NUMBER_OF_CHAR;
@@ -14,7 +14,7 @@ public class CharCreator {
     }
 
         //методы для преобразования int в char в полях TextField
-    private boolean isInt(TextField input, String message) {
+    public boolean inputInt(TextField input, String message) {
         try {
 
             int number = Integer.parseInt(input.getText());
@@ -28,7 +28,7 @@ public class CharCreator {
         }
     }
 
-    private boolean charPrint(TextField out, String message) {
+    public boolean charPrint(TextField out, String message) {
         try {
             StringBuilder s = new StringBuilder().append(CharCreator.symbolUTF_8);
             out.setText(String.valueOf(s));
