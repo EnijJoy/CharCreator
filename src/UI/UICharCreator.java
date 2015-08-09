@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import logic.CharCreator;
+import logic.mode.CharCreator;
 
 
 public class UICharCreator extends Application {

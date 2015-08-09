@@ -1,4 +1,4 @@
-package logic;
+package logic.mode;
 
 public class Encryption {
 }

@@ -1,4 +1,4 @@
-package logic;
+package logic.mode;
 
 import javafx.scene.control.TextField;
 
