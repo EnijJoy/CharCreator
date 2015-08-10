@@ -1,24 +1,35 @@
 package UI;
 
+import UI.creator.UICharCreator;
+import UI.decipher.UIDecipher;
+import UI.encryption.UIEncryption;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class UIMenu extends Application {       // ГЛАЗА РЕЖЕТ ОТ ОБИЛИЯ ОДИНАКОВОГО КОДА!!! УРОСТИТЬ!
+public class UIMenu extends Application {
 
+            /////Important variables/////
+    private Stage window;
 
+    private Scene mainScene;
 
-    BorderPane layoutMenu;
-    static Scene menuScene;
+    private BorderPane mainLayout;
 
-    private final int widthMenuScene = 300;
+    private String nameProgram = "CharCreator v1.0";
+            /////////////////////////////
 
-    private final int heightMenuScene = 125;
+            /////UIObject variables/////
+    private UIEncryption encryption;
 
+    private UIDecipher decipher;
 
-        ///////////////////Menu variables/////////////////////////
+    private UICharCreator charCreator;
+            /////////////////////////////
+
+            /////Menu variables/////
         private final String nameFileMenu = "_File";
 
     private final String nameFileMenuItems_Save = "_Save...";
@@ -42,15 +53,21 @@ public class UIMenu extends Application {       // ГЛАЗА РЕЖЕТ ОТ О
     private final String nameHelpMenuItems_About = "About...";
 
     private final String nameHelpMenuItems_Dev = "Developing...";
-    ///////////////////////////////////////////////////////////////
+            /////////////////////////////
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 
     @Override
     public void start(Stage primaryStage) {
-        Stage window = primaryStage;
+
+        window = primaryStage;
+        window.setTitle(nameProgram);
+
+        mainLayout = new BorderPane();
+
+        charCreator = new UICharCreator();
+        encryption = new UIEncryption();
+        decipher = new UIDecipher();
+
 
 
         //File menu
@@ -63,19 +80,17 @@ public class UIMenu extends Application {       // ГЛАЗА РЕЖЕТ ОТ О
         });
 
         MenuItem openFile = new MenuItem(nameFileMenuItems_Open);   //прикрутить логику открытия txt
-        openFile.setOnAction(e -> {
+        openFile.setOnAction(e -> {//
             System.out.println("Open file from .txt");
         });
 
         MenuItem settingsFile = new MenuItem(nameFileMenuItems_Settings);
         settingsFile.setOnAction(e -> {
-            System.out.println("Oooooops");///открываем настройки и чо-то делаем
+            System.out.println("Open settings");///открываем настройки и чо-то делаем
         });
 
         MenuItem exitFile = new MenuItem(nameFileMenuItems_Exit);
-        exitFile.setOnAction(e -> {
-            window.close();
-        });
+        exitFile.setOnAction(e -> window.close());
 
         fileMenu.getItems().addAll(saveFile, openFile, new SeparatorMenuItem(), settingsFile, new SeparatorMenuItem(), exitFile);
 
@@ -90,7 +105,7 @@ public class UIMenu extends Application {       // ГЛАЗА РЕЖЕТ ОТ О
         charMode.setSelected(true);
         charMode.setOnAction(e -> {
             if (charMode.isSelected())
-                System.out.println("CharCreator()");//вызов CharCreator() (конвертим int в char)
+                   mainLayout.setCenter(charCreator.getCharView());
         });
 
         RadioMenuItem cryptMode = new RadioMenuItem(nameModeMenuItems_Crypt);
@@ -133,13 +148,17 @@ public class UIMenu extends Application {       // ГЛАЗА РЕЖЕТ ОТ О
         menuBar.getMenus().addAll(fileMenu, modeMenu, helpMenu);
 
 
-        layoutMenu = new BorderPane();
-        layoutMenu.setTop(menuBar);
+        mainLayout.setTop(menuBar);
+        mainLayout.setCenter(charCreator.getCharView());
 
-        menuScene = new Scene(layoutMenu, widthMenuScene, heightMenuScene);
-
-        window.setScene(menuScene);
+        mainScene = new Scene(mainLayout, 400, 250);
+        window.setScene(mainScene);
         window.show();
 
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }

@@ -1,10 +1,10 @@
-package logic.mode;
+package logic.mode.creator;
 
 import javafx.scene.control.TextField;
 
 public class CharCreator {
 
-    private static char symbolUTF_8 = 0;     // сделать переменные приватными, реализовать безопасную логику
+    private static char symbolUTF_8 = 0;
 
     private static int NUMBER_OF_CHAR = 0;
 

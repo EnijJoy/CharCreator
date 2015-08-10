@@ -1,4 +1,4 @@
-package UI;
+package UI.encryption;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;

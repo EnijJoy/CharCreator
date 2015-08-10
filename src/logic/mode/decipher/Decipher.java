@@ -1,4 +1,4 @@
-package logic.mode;
+package logic.mode.decipher;
 
 public class Decipher {
 
