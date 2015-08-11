@@ -1,4 +1,4 @@
-package UI.creator;
+package UI.mode.creator;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -32,6 +32,17 @@ public class UICharCreator {
 
     private final String nameGenerateButton = "Generate Symbol";
 
+    private final int charSceneWidth = 300;
+
+    private final int charSceneHeight = 180;
+
+    public int getCharSceneWidth() {
+        return charSceneWidth;
+    }
+
+    public int getCharSceneHeight() {
+        return charSceneHeight;
+    }
 
     public GridPane getCharView() {
 

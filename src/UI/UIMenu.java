@@ -1,8 +1,8 @@
 package UI;
 
-import UI.creator.UICharCreator;
-import UI.decipher.UIDecipher;
-import UI.encryption.UIEncryption;
+import UI.mode.creator.UICharCreator;
+import UI.mode.decipher.UIDecipher;
+import UI.mode.encryption.UIEncryption;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,13 +12,17 @@ import javafx.stage.Stage;
 public class UIMenu extends Application {
 
             /////Important variables/////
-    private Stage window;
+    protected Stage window;
 
     private Scene mainScene;
 
     private BorderPane mainLayout;
 
     private String nameProgram = "CharCreator v1.0";
+
+    private int mainSceneWidth = 300;
+
+    private int mainSceneHeight = 145;
             /////////////////////////////
 
             /////UIObject variables/////
@@ -58,6 +62,8 @@ public class UIMenu extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+        UIMenu uiMenu = new UIMenu();
 
         window = primaryStage;
         window.setTitle(nameProgram);
@@ -105,23 +111,27 @@ public class UIMenu extends Application {
         charMode.setSelected(true);
         charMode.setOnAction(e -> {
             if (charMode.isSelected())
-                   mainLayout.setCenter(charCreator.getCharView());
+                window.setWidth(charCreator.getCharSceneWidth());
+                window.setHeight(charCreator.getCharSceneHeight());
+                mainLayout.setCenter(charCreator.getCharView());
         });
 
         RadioMenuItem cryptMode = new RadioMenuItem(nameModeMenuItems_Crypt);
         cryptMode.setToggleGroup(modeToggle);
         cryptMode.setOnAction(e -> {
             if (cryptMode.isSelected())
-                //window.setScene(cryptScene);
-                System.out.println("Encryption()");//вызов Encryption() (придумать алгоритм шифрования с символами)
+                window.setWidth(encryption.getCryptSceneWidth());
+                window.setHeight(encryption.getCryptSceneHeight());
+                mainLayout.setCenter(encryption.getCryptView());
         });
 
         RadioMenuItem decipherMode = new RadioMenuItem(nameModeMenuItems_Decip);
         decipherMode.setToggleGroup(modeToggle);
         decipherMode.setOnAction(e -> {
             if (decipherMode.isSelected())
-                //window.setScene(decipherScene);
-                System.out.println("Decipher()");//вызов Decipher() (Алгоритм расшифровки)
+                window.setWidth(decipher.getDecipherSceneWidth());
+                window.setHeight(decipher.getDecipherSceneHeight());
+                mainLayout.setCenter(decipher.getDecipherView());
         });
 
         modeMenu.getItems().addAll(charMode, new SeparatorMenuItem(), cryptMode, new SeparatorMenuItem(), decipherMode);
@@ -147,11 +157,11 @@ public class UIMenu extends Application {
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(fileMenu, modeMenu, helpMenu);
 
-
         mainLayout.setTop(menuBar);
         mainLayout.setCenter(charCreator.getCharView());
 
-        mainScene = new Scene(mainLayout, 400, 250);
+        mainScene = new Scene(mainLayout, mainSceneWidth, mainSceneHeight);
+
         window.setScene(mainScene);
         window.show();
 
