@@ -14,11 +14,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
+import logic.mode.encryption.Encryption;
 
 
 public class UIEncryption extends UIMenu {
 
     private GridPane cryptView;
+
+    public String getInputMessage() {
+        return inputMessage.getText();
+    }
 
     private TextArea inputMessage;
 
