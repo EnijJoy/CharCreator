@@ -21,13 +21,14 @@ public class UIEncryption extends UIMenu {
 
     private GridPane cryptView;
 
-    public String getInputMessage() {
+    public static String getInputMessage() {
         return inputMessage.getText();
     }
 
-    private TextArea inputMessage;
+    private static TextArea inputMessage;
 
     private TextArea cryptMessage;
+
 
     private HBox buttonBox;
 
@@ -101,7 +102,9 @@ public class UIEncryption extends UIMenu {
 
         cryptButton = new Button(nameCryptButton);
         cryptButton.setOnAction(e -> {
-
+            Encryption encryption = new Encryption();
+            encryption.Encrypt(inputMessage, inputMessage.getText());
+            encryption.cryptPrint(cryptMessage,cryptMessage.getText());
         });
 
 

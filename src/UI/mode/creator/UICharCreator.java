@@ -28,7 +28,7 @@ public class UICharCreator {
 
     private final String nameNumberLabel = "Number: ";
 
-    private final String nameSymbolLabel = "Symbol UTF-8: ";
+    private final String nameSymbolLabel = "Symbol UTF: ";
 
     private final String nameGenerateButton = "Generate Symbol";
 

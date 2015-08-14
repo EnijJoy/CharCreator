@@ -2,26 +2,39 @@ package logic.mode.encryption;
 
 
 
+import javafx.scene.control.TextArea;
+
+
 public class Encryption {
 
+    private char charInputText[];
 
-    public static void main(String[] args) {
+    private String CRYPT_MESSAGE;
 
+    public void Encrypt(TextArea input, String message) {
 
-        /*String String = "ASdsdaas";
-        char[] charS = String.toCharArray();*/
-        String s = "Я люблю пончики!";
-        char[] a = s.toCharArray();
-        for (int i = 0; i < a.length; i++) {
-            int m = (int) a[i];
-            int i1 = m << 20;
-            char c = (char) i1;
-            System.out.println(c);
+        charInputText = message.toCharArray();
+
+        for (int i = 0; i < charInputText.length; i++) {
+
+            int a = charInputText[i] + 10240;
+            charInputText[i] = (char) a;
+
         }
-
+        this.CRYPT_MESSAGE = String.valueOf(charInputText);
+    }
+    public boolean cryptPrint(TextArea out, String message) {
+            try {
+                out.setText(CRYPT_MESSAGE);
+                return true;
+            } catch (NumberFormatException e) {                                  // Доработать exception (создать свой)
+                System.out.println("Error: Input a number in first TextField");  // Если ввод во второе поле, кинуть exception
+                return false;
+            }
     }
 
 }
+
 
 
 
