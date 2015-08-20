@@ -17,6 +17,8 @@ public class InputText {
 
     private int[] intInputText = new int[byteInputText.length];
 
+    private int[] rndLat = new int[byteInputText.length];
+
     /*********************************************/
 
     public int[] getIntInputText(byte[] byteInputText){
@@ -52,6 +54,17 @@ public class InputText {
 
         return intLatMassive;
 
+    }
+
+    public int[] getRandomLat(int[] latMas){
+
+        for(int i =0; i < latMas.length; i++){
+
+            rndLat[i] = latMas[new Random().nextInt(latMas.length)];
+
+        }
+
+        return rndLat;
     }
 
 }

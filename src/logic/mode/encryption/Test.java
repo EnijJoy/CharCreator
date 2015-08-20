@@ -11,7 +11,10 @@ public class Test {
 
         String message = "I'll be a rich man!";
 
+        InputText inputText = new InputText();
 
+        for (int x : inputText.getRandomLat(inputText.getIntLat()))
+            System.out.println(x);
 
 
 
