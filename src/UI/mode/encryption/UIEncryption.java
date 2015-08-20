@@ -21,11 +21,7 @@ public class UIEncryption extends UIMenu {
 
     private GridPane cryptView;
 
-    public static String getInputMessage() {
-        return inputMessage.getText();
-    }
-
-    private static TextArea inputMessage;
+    private TextArea inputMessage;
 
     private TextArea cryptMessage;
 
@@ -121,7 +117,7 @@ public class UIEncryption extends UIMenu {
             File file = fileChooser.showSaveDialog(window);
 
             if(file != null){
-                SaveFile(inputMessage.getText(), file);
+                SaveFile(cryptMessage.getText(), file);
             }
         });
 

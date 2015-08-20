@@ -1,21 +1,18 @@
 package logic.mode.encryption;
 
 
-import java.io.UnsupportedEncodingException;
+import UI.mode.encryption.UIEncryption;
+
+import java.util.Random;
 
 public class Test {
 
     public static void main(String[] args) {
 
-
-        String s = "я !";
-
+        String message = "I'll be a rich man!";
 
 
 
-
-           /* String MESSAGE = String.valueOf(charInputText);
-            System.out.println(MESSAGE);*/
 
 
     }

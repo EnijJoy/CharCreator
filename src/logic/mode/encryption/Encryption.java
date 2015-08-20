@@ -11,7 +11,7 @@ public class Encryption {
 
     private String CRYPT_MESSAGE;
 
-    public void Encrypt(TextArea input, String message) {
+    public void Encrypt(TextArea inputArea, String message) {
 
         charInputText = message.toCharArray();
 
